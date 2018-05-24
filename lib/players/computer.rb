@@ -4,41 +4,39 @@ module Players
     attr_accessor :board
     #played perfectly is unwinnable. logic - like on turn 1 always pic middle or go to corner. min/max algorithm may not work.
     def move(board)
-      @board = board
-      case input
-        input = gets.strip
-      when winning != nil
-        input = winning + 1
-      when blocking != nil
-        input = blocking + 1
-      when center?
-        input = 5
-      when opposite != nil && @board.taken?(opposite) == false
-        input = opposite
-      when corner
-        input = corner + 1
-      else
-        until @board.taken?(input)
-          input = (1..9).to_a.sample
-      end
-      input.to_s
-    end
-
-    #it accepts board. it returns the move from the computer in a 1-9 string. must make a valid move.
-    def opposite
-      case
-      when board.taken?(1) && !board.taken?(9)
-          9
-        when board.taken?(9) && !board.taken?(1)
-          1
-        when board.taken?(3) && !board.taken?(7)
-          7
-        when board.taken?(7) && !board.taken?(3)
-          3
-        else
-          nil
+      if board.cells[4] == " "
+        timer
+         "5"
+      elsif board.cells[0] == " "
+         timer
+         "1"
+      elsif board.cells[2] == " "
+         timer
+         "3"
+      elsif board.cells[6] == " "
+         timer
+         "7"
+      elsif board.cells[8] == " "
+         timer
+         "9"
+      elsif board.cells[1] == " "
+         timer
+         "2"
+      elsif board.cells[3] == " "
+         timer
+         "4"
+      elsif board.cells[5] == " "
+         timer
+         "6"
+      elsif board.cells[7] == " "
+         timer
+         "8"
       end
     end
 
+    def timer
+      sleep(6)
+    end
+    
   end
 end
